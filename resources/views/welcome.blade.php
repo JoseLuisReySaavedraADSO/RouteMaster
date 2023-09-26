@@ -13,6 +13,7 @@
         <!-- Styles -->
         <style>
         </style>
+        @extends('layouts.app')
     </head>
     
 </html>
