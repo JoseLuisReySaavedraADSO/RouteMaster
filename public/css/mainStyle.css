@@ -63,7 +63,7 @@
 
 
 /*
-***** VISTA LOGIN 
+***** VISTA LOGIN Y REGISTER
 */
 .loginSection{
     width: 100%;
@@ -149,4 +149,49 @@
     display: inline-block;
     margin-top: 200px;
     position: relative;
+}
+
+
+/*
+***** VISTA HOME
+*/
+.formHome{
+    padding: 0px 20px;
+    background-color: #00001a;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.formHome__input{
+    text-transform: uppercase;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    padding: 0px 5px;
+    height: 30px;
+    width: 150px;
+}
+.formHome__button{
+    width: 150px;
+    background-color: #21213B;
+    color: #fff;
+}
+.button__logout{
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    background-color: #00001a;
+    text-align: center;
+}
+.button__logout a{
+    text-decoration: none;
+    padding: 10px;
+    background-color: #21213B;
+    border-radius: 7px;
+    color: #fff;
 }
