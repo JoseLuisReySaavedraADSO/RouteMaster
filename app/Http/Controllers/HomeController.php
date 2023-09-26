@@ -24,17 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $jsonData = json_decode(file_get_contents('../resources/json/data.json'), true);
-        foreach ($jsonData['ubicaciones'] as $ubicacionData) {
-            location::create([
-                'nombre' => $ubicacionData['nombre'],
-                'posX' => $ubicacionData['posX'],
-                'posY' => $ubicacionData['posY'],
-            ]);
-        }
-
-
         $locations = location::all();
         return view('home', compact('locations'));
     }

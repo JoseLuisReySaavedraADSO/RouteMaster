@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLocationRequest;
+use App\Models\Connection;
 use App\Models\location;
 
 class LocationController extends Controller
@@ -17,7 +18,40 @@ class LocationController extends Controller
         ];
 
         $Location = location::create($data);
+        $this->connections();
         return redirect()->route('home');
         // return view('home');
     }
+
+
+    public function connections()
+    {
+        function calculateDistance($x1, $y1, $x2, $y2)
+        {
+            return sqrt(pow($x2 - $x1, 2) + pow($y2 - $y1, 2));
+        }
+
+        // Eliminar todos los registros existentes en la tabla connections
+        Connection::truncate();
+
+        $locations = Location::get();
+        foreach ($locations as $location1) {
+            foreach ($locations as $location2) {
+                if ($location1->id != $location2->id) {
+                    $distance = calculateDistance($location1->posX, $location1->posY, $location2->posX, $location2->posY);
+
+                    // Insertar la distancia en la tabla connections
+                    Connection::create([
+                        'ubicacion1_id' => $location1->id,
+                        'ubicacion2_id' => $location2->id,
+                        'peso' => $distance,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
+        }
+    }
+
+    
 }
