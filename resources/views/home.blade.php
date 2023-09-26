@@ -2,22 +2,14 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
+    <div style="margin-left: 50px; margin-right: 30px">   
+        @foreach ($locations as $location)
+        <div style="position: absolute; left: {{ ($location->posX)*5 }}px; top: {{ ($location->posY)*5 }}px;">
+            
+            <img style="width: 30px" src="https://cdn-icons-png.flaticon.com/512/2776/2776067.png" alt="">
         </div>
+    @endforeach
     </div>
 </div>
 @endsection
