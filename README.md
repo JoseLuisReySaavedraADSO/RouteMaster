@@ -1,66 +1,47 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Aplicación web de Gestión de Rutas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este repositorio contiene la documentación para la aplicación web de gestión de rutas, desarrollada como parte del Reto Senasoft.
 
-## About Laravel
+## Introducción
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+La aplicación web tiene como objetivo facilitar la obtención de rutas óptimas, mejorando el proceso de encontrar la ruta más eficiente. Proporciona diversas funcionalidades, que incluyen inicio de sesión, registro de usuarios, validación de ubicaciones, creación y visualización de rutas, conexión de puntos y cálculo de la ruta más eficiente. La aplicación se enfoca en mejorar la selección de rutas considerando varios factores, como el costo de conexión entre ubicaciones.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requerimientos Funcionales
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Carga de Datos
 
-## Learning Laravel
+- La aplicación permite la carga de datos de prueba desde un archivo JSON.
+- Los datos cargados incluyen información sobre ubicaciones geográficas.
+- Se especifican las conexiones entre ubicaciones y el punto de origen de la ruta.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Creación de Rutas
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Los usuarios pueden crear puntos especificando coordenadas (X, Y).
+- La aplicación permite la conexión bidireccional entre puntos con la especificación de un peso o costo asociado.
+- Los usuarios pueden seleccionar un punto de origen para iniciar la ruta.
+- La aplicación calcula la ruta más eficiente teniendo en cuenta los costos de conexión y los demás puntos de entrega.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Almacenamiento de Datos
 
-## Laravel Sponsors
+- La aplicación guarda todas las ubicaciones y rutas en una base de datos para futuras modificaciones.
+- Proporciona la capacidad de modificar y eliminar ubicaciones almacenadas.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Requerimientos No Funcionales
 
-### Premium Partners
+### Usabilidad
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- La interfaz de usuario se diseñó para ser intuitiva y fácil de usar.
+- Los usuarios pueden cargar datos y crear rutas sin dificultad.
+- Los usuarios deberan verificar su correo para poder continuar a usar la web.
 
-## Contributing
+### Rendimiento
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- La aplicación ofrece una respuesta rápida en el cálculo de rutas y otras operaciones.
 
-## Code of Conduct
+## Funcionalidad
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- La aplicación cuenta con 3 rutas a las que se podra acceder para leer los archivos json:
+http://routemaster.test/prueba | esta ruta nos va a servir para que la web lea el primer archivo propuesto en el reto.
+http://routemaster.test/basico | esta ruta nos va a servir para que la web lea el archivo "basico.json" propuesto en el reto.
+http://routemaster.test/medio  | esta ruta nos va a servir para que la web lea el archivo "medio.json" propuesto en el reto.
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
