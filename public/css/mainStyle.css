@@ -305,19 +305,58 @@
     width: 30px;
     cursor: pointer;
 }
-.popup {
+.popup{
     color: #fff;
     display: none;
     position: fixed;
-    right: 0;
-    top: 0;
+    right: 10px;
+    top: 10px;
+    width: 300px;
     padding: 20px;
     background-color: #00001a;
     z-index: 1;
+    border-radius: 7px;
+}
+.popup__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.popup__container div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.formHome__input--mod{
+    width: 200px;
+}
+.formHome__button--mod{
+    width: 100%;
 }
 .close-popup-button {
+    font-size: 30px;
     position: absolute;
-    top: 10px;
+    top: -7px;
     right: 10px;
     cursor: pointer;
+}
+.button__delete{
+    font-size: 15px;
+    margin-top: 5px;
+    text-align: center;
+    padding: 5px 0px;
+    display: inline-block;
+    background-color: #21213B;
+    color: #fff;
+    border-radius: 7px;
+    text-decoration: none;
+    width: 100%;
+}
+.name__point{
+    color: #21213B;
+    line-height: 1;
 }
