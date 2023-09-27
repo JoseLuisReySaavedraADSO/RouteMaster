@@ -17,19 +17,11 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        $jsonData = json_decode(file_get_contents('resources/json/data.json'), true);
-        foreach ($jsonData['ubicaciones'] as $ubicacionData) {
-            location::create([
-                'nombre' => $ubicacionData['nombre'],
-                'posX' => $ubicacionData['posX'],
-                'posY' => $ubicacionData['posY'],
-            ]);
-        };
-        $locationController = new LocationController();
-        $locationController->connections();
+        \App\Models\User::factory()->create([
+            'name' => 'Jose Rey',
+            'email' => 'joslrey@misena.edu.co',
+            'password' => '$2y$10$30ZQjH0r3Zo6FzgLY05.5uADvjxtGSTvZgoKYpc2lWj0e5fV3J5U.',
+            'email_verified_at' => '2023-09-27 20:29:24',
+        ]);
     }
 }
