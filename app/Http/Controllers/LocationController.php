@@ -23,7 +23,6 @@ class LocationController extends Controller
         // return view('home');
     }
 
-
     public function connections()
     {
         function calculateDistance($x1, $y1, $x2, $y2)

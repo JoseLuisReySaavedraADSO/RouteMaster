@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '| VERIFICAR CORREO')
+
 @section('content')
 
 <main class="verifiedMain">

@@ -23,8 +23,8 @@ class StoreLocationRequest extends FormRequest
     {
         return [
             'nombre' => 'required | max:100',
-            'posx' => 'required | max:100',
-            'posy' => 'required | max:100',
+            'posx' => 'required | integer | between: 0, 265',
+            'posy' => 'required | integer | between: 0, 125',
         ];
     }
 }
