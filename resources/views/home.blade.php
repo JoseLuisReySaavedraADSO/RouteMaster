@@ -12,6 +12,7 @@
 
                 <div class="open-popup-button" onclick="openPopup('{{ $location->id }}')">
                     <img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/2776/2776067.png" alt="">
+                    <h4>{{$location->id}}</h4>
                 </div>
 
                 <form action="{{ route('update', $location->id) }}" method="POST">

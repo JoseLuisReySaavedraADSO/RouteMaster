@@ -33,3 +33,9 @@ Route::post('/add', [App\Http\Controllers\LocationController::class, 'store'])->
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 Route::post('/update/{id}', [App\Http\Controllers\LocationController::class, 'update'])->name('update');
 Route::delete('/delete/{id}', [App\Http\Controllers\LocationController::class, 'destroy'])->name('delete');
+
+//Importar JSON
+Route::get('/prueba', [App\Http\Controllers\JsonController::class, 'prueba'])->name('prueba');
+Route::get('/basico', [App\Http\Controllers\JsonController::class, 'basico'])->name('basico');
+Route::get('/medio', [App\Http\Controllers\JsonController::class, 'medio'])->name('medio');
+
