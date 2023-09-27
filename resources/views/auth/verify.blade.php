@@ -1,28 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
 
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
+<main class="verifiedMain">
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form>
+    <h1 class="verifiedMain__title">Bienvenido a Route<span class="verifiedMain__title--span">Master</span></h1>
+
+    <div class="verified__container">
+
+        <div class="verified__container--title">{{ __('Por favor, verifique su email') }}</div>
+
+        <div class="verified__container--text">
+            @if (session('resent'))
+                <div class="verified__container--title" role="alert">
+                    {{ __('Se ha enviado un nuevo enlace de verificación a su correo') }}
                 </div>
-            </div>
+            @endif
+
+            {{ __('Antes de continuar, consulte su correo para obtener el enlace verificación') }}
+            <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                @csrf
+                <button type="submit" class="verified__container--button">{{ __('Reenviar correo') }}</button>
+            </form>
         </div>
-    </div>
-</div>
+
+    </section>
+
+</main>
+
 @endsection
