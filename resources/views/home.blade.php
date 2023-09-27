@@ -12,45 +12,58 @@
 
                 <div class="open-popup-button" onclick="openPopup('{{ $location->id }}')">
                     <img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/2776/2776067.png" alt="">
+                    <p class="name__point">{{ $location->id }}</p>
                 </div>
 
-                <form action="{{ route('update', $location->id) }}" method="POST">
-                    @csrf
-                    <div id="myPopup_{{ $location->id }}" class="popup">
-                        <a class="close-popup-button" onclick="closePopup('{{ $location->id }}')">&times;</a>
-                        <br>
-                        <div>
-                            <label for="nombre_{{ $location->id }}">Punto</label>
-                            <input id="nombre_{{ $location->id }}" name="nombre" type="text"
-                                value="{{ $location->nombre }}">
-                        </div>
-                        <div>
-                            <label for="coorx_{{ $location->id }}">X</label>
-                            <input id="coorx_{{ $location->id }}" name="posx" type="text"
-                                value="{{ $location->posX }}" required min="0" max="265">
-                        </div>
-                        <div>
-                            <label for="coory_{{ $location->id }}">Y</label>
-                            <input id="coory_{{ $location->id }}" name="posy" type="text"
-                                value="{{ $location->posY }}" required min="0" max="125">
-                        </div>
-                        <button type="submit" class="">
-                            Actualizar
-                        </button>
-                        {{-- <button type="submit" class="">
-                            Eliminar
-                        </button> --}}
+                <div>
 
-                    </div>
-                </form>
+                    <form action="{{ route('update', $location->id) }}" method="POST">
+                        @csrf
+                        <div id="myPopup_{{ $location->id }}" class="popup">
+                            <a class="close-popup-button" onclick="closePopup('{{ $location->id }}')">&times;</a>
+                            <br>
+                            
+                            <div class="popup__container">
+                                <div>
+                                    <label for="nombre_{{ $location->id }}">Punto</label>
+                                    <input class="formHome__input formHome__input--mod" id="nombre_{{ $location->id }}" name="nombre" type="text"
+                                        value="{{ $location->nombre }}">
+                                </div>
+                                <div>
+                                    <label for="coorx_{{ $location->id }}">X</label>
+                                    <input class="formHome__input formHome__input--mod" id="coorx_{{ $location->id }}" name="posx" type="text"
+                                        value="{{ $location->posX }}" required min="0" max="265">
+                                </div>
+                                <div>
+                                    <label for="coory_{{ $location->id }}">Y</label>
+                                    <input class="formHome__input formHome__input--mod" id="coory_{{ $location->id }}" name="posy" type="text"
+                                        value="{{ $location->posY }}" required min="0" max="125">
+                                </div>
+                                
+                                {{-- <button type="submit" class="">
+                                    Eliminar
+                                </button> --}}
+                            </div>
+                            <button type="submit" class="formHome__button formHome__button--mod formHome__input ">
+                                Actualizar
+                            </button>
 
-                <a href="#" class="delete"
-                    onclick="event.preventDefault(); document.getElementById('delete-form-{{ $location->id }}').submit();">a</a>
-                <form id="delete-form-{{ $location->id }}" action="{{ route('delete', $location->id) }}" method="POST"
-                    style="display: none;">
-                    @csrf
-                    @method('DELETE')
-                </form>
+                            <a href="#" class="delete button__delete" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $location->id }}').submit();">
+                                Eliminar
+                            </a>
+    
+                        </div>
+                    </form>
+    
+                    {{-- <a href="#" class="delete"
+                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $location->id }}').submit();">Delete</a> --}}
+                    <form id="delete-form-{{ $location->id }}" action="{{ route('delete', $location->id) }}" method="POST"
+                        style="display: none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+
+                </div>
 
             </div>
         @endforeach
