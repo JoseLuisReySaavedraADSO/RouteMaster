@@ -49,11 +49,11 @@
 
         <form class="formHome" action="{{ route('add') }}" method="post">
             @csrf
-            <input class="formHome__input" type="text" name="nombre" placeholder="Punto">
+            <input class="formHome__input" type="text" name="nombre" placeholder="Punto" required>
 
-            <input class="formHome__input" type="text" name="posx" placeholder="Posición X">
+            <input class="formHome__input" type="text" name="posx" placeholder="Posición X" required>
 
-            <input class="formHome__input" type="text" name="posy" placeholder="Posición Y">
+            <input class="formHome__input" type="text" name="posy" placeholder="Posición Y" required>
 
             <button class="formHome__button formHome__input" type="submit">Guardar</button>
 

@@ -29,3 +29,6 @@ Auth::routes();
 
 Route::post('/calculate-route', [App\Http\Controllers\LocationController::class], 'calculateRoute')->name('calculate-route');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes(['verify' => true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
