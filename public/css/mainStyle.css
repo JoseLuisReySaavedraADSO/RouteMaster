@@ -8,11 +8,11 @@
     font-family: 'Jockey One', sans-serif;
 }
 
-.location-point.selected {
-    background-color: #ff0000; /* Cambia el color de fondo cuando se selecciona */
-    transform: scale(1.2); /* Aumenta el tamaño del punto cuando se selecciona */
-    transition: background-color 0.3s, transform 0.3s; /* Agrega una transición suave */
-}
+/* .location-point.selected {
+    background-color: #ff0000; Cambia el color de fondo cuando se selecciona
+    transform: scale(1.2); Aumenta el tamaño del punto cuando se selecciona
+    transition: background-color 0.3s, transform 0.3s; Agrega una transición suave
+} */
 
 /*
 ***** VISTA WELCOME 
@@ -208,9 +208,16 @@
     width: 150px;
 }
 .formHome__button{
+    cursor: pointer;
     width: 150px;
     background-color: #21213B;
     color: #fff;
+    transition: all 300ms ease;
+}
+.formHome__button:hover{
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, .2);
+    background-color: #fff;
+    color: #21213B;
 }
 .button__logout{
     position: absolute;
@@ -225,6 +232,12 @@
     background-color: #21213B;
     border-radius: 7px;
     color: #fff;
+    transition: all 300ms ease;
+}
+.button__logout a:hover{
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, .2);
+    background-color: #fff;
+    color: #21213B;
 }
 
 
@@ -274,4 +287,31 @@
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.4);
     background-color: #fff;
     color: #21213B;
+}
+
+
+/* 
+
+    JAVACRIPT
+
+*/
+.open-popup-button img {
+    width: 30px;
+    cursor: pointer;
+}
+.popup {
+    color: #fff;
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    padding: 20px;
+    background-color: #00001a;
+    z-index: 1;
+}
+.close-popup-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
 }
