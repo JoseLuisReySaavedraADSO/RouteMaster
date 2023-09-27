@@ -78,7 +78,8 @@ class RouteController extends Controller
         // $route contiene la secuencia de ubicaciones en la ruta óptima
         // dd($route);
 
-        return view('home', compact('route'));
+        // dd($route);
+        return view('home', compact('route', 'locations'));
     }
 
 }

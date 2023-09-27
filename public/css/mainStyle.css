@@ -8,11 +8,13 @@
     font-family: 'Jockey One', sans-serif;
 }
 
-/* .location-point.selected {
-    background-color: #ff0000; Cambia el color de fondo cuando se selecciona
-    transform: scale(1.2); Aumenta el tamaño del punto cuando se selecciona
-    transition: background-color 0.3s, transform 0.3s; Agrega una transición suave
-} */
+.location-point.selected {
+    background-color: #00001a;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 26, .4);
+}
 
 /*
 ***** VISTA WELCOME 
@@ -198,6 +200,10 @@
     justify-content: center;
     gap: 10px;
 }
+.formHome__mod{
+    display: flex;
+    gap: 10px;
+}
 .formHome__input{
     text-transform: uppercase;
     outline: none;
@@ -292,7 +298,7 @@
 
 /* 
 
-    JAVACRIPT
+    JAVASCRIPT
 
 */
 .open-popup-button img {

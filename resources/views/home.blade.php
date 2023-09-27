@@ -7,13 +7,15 @@
     <main style="background-image: url('{{ asset('images/image2.png') }}');" class="main">
         <svg id="lines-container" style="position: absolute; width: 100%; height: 100%; z-index: -1;"></svg>
         @foreach ($locations as $location)
+        
             <div style="position: absolute; left: {{ $location->posX * 5 }}px; top: {{ $location->posY * 5 }}px;"
                 class="location-point" data-location-id="{{ $location->id }}">
 
                 <div class="open-popup-button" onclick="openPopup('{{ $location->id }}')">
                     <img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/2776/2776067.png" alt="">
                 </div>
-                <form action="{{ route('update', $location->id) }}" method="POST">
+
+                <form class="popup" action="{{ route('update', $location->id) }}" method="POST">
                     @csrf
                     <div id="myPopup_{{ $location->id }}" class="popup">
                         <a class="close-popup-button" onclick="closePopup('{{ $location->id }}')">&times;</a>
@@ -53,24 +55,26 @@
             </div>
         @endforeach
 
-        <form id="calculate-route-form" class="formHome" action="{{ route('add') }}" method="post">
-            @csrf
-            <input class="formHome__input" type="text" name="nombre" placeholder="Punto" required>
-            <input class="formHome__input" type="number" name="posx" placeholder="Posición X (MAX 265)" required
-                min="0" max="265">
-            <input class="formHome__input" type="number" name="posy" placeholder="Posición Y (MAX 125)" required
-                min="0" max="125">
-            <button class="formHome__button formHome__input" type="submit">Guardar</button>
+        <div class="formHome">
 
-        </form>
+            <form class="formHome__mod" id="calculate-route-form" action="{{ route('add') }}" method="post">
+                @csrf
+                <input class="formHome__input" type="text" name="nombre" placeholder="Punto" required>
+                <input class="formHome__input" type="number" name="posx" placeholder="Posición X (MAX 265)" required
+                    min="0" max="265">
+                <input class="formHome__input" type="number" name="posy" placeholder="Posición Y (MAX 125)" required
+                    min="0" max="125">
+                <button class="formHome__button formHome__input" type="submit">Guardar</button>
+    
+            </form>
+    
+            <form id="calculate-route-form" action="{{ 'calculate' }}" method="POST">
+                @csrf
+                <input class="formHome__input" type="hidden" id="startLocation" name="startLocation" value="">
+                <button class="formHome__button formHome__input calculate-route-button" type="submit">Calcular ruta</button>
+            </form>
 
-        <form id="calculate-route-form" action="{{ 'calculate' }}" method="POST">
-            @csrf
-            <input type="hidden" id="startLocation" name="startLocation" value="">
-            {{-- <button class="formHome__button formHome__input" type="submit">Calcular ruta</button> --}}
-
-            <button class="formHome__button formH ome__input calculate-route-button" type="submit">Calcular ruta</button>
-        </form>
+        </div>
 
         {{-- <h1>Ruta óptima</h1>
         @if (isset($route))
