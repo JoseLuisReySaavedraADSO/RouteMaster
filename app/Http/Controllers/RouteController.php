@@ -8,14 +8,16 @@ use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-    public function calculateRoute(Request $request)
+    public function calculate(Request $request)
     {
-        dd($request);
         $startLocationId = $request->input('startLocation');
-        $locations = location::get();
 
-        // Obtener todas las conexiones
-        $connections = Connection::get();
+        // Obtener la ubicación de inicio
+        $startLocation = Location::find($startLocationId);
+
+        // Obtener todas las conexiones desde y hacia la ubicación de inicio
+        $connectionsFromStartLocation = $startLocation->connectionsFrom;
+        $connectionsToStartLocation = $startLocation->connectionsTo;
 
         // Crear un array para almacenar las ubicaciones en el orden de la ruta
         $route = [];
@@ -24,26 +26,31 @@ class RouteController extends Controller
         $currentLocationId = $startLocationId;
         $route[] = $currentLocationId;
 
-        // Eliminar la conexión que contiene la ubicación de inicio
-        $connections = $connections->filter(function ($connection) use ($currentLocationId) {
-            return $connection->ubicacion1_id !== $currentLocationId;
-        });
-
         // Calcular la ruta
-        while (!$connections->isEmpty()) {
+
+        $locations = Location::get();
+        $stopCondition = count($locations);
+
+        while (count($route) < $stopCondition) {
             $minDistance = PHP_FLOAT_MAX;
             $nextLocationId = null;
 
-            foreach ($connections as $connection) {
-                if ($connection->ubicacion1_id === $currentLocationId) {
+            // Encuentra la próxima ubicación más cercana
+            foreach ($connectionsFromStartLocation as $connection) {
+                $distance = $connection->peso;
+
+                if ($distance < $minDistance && !in_array($connection->ubicacion2_id, $route)) {
+                    $minDistance = $distance;
+                    $nextLocationId = $connection->ubicacion2_id;
+                }
+            }
+
+            // Si no se encontró una conexión desde la ubicación de inicio, busca en las conexiones hacia la ubicación de inicio
+            if ($nextLocationId === null) {
+                foreach ($connectionsToStartLocation as $connection) {
                     $distance = $connection->peso;
-                    if ($distance < $minDistance) {
-                        $minDistance = $distance;
-                        $nextLocationId = $connection->ubicacion2_id;
-                    }
-                } elseif ($connection->ubicacion2_id === $currentLocationId) {
-                    $distance = $connection->peso;
-                    if ($distance < $minDistance) {
+
+                    if ($distance < $minDistance && !in_array($connection->ubicacion1_id, $route)) {
                         $minDistance = $distance;
                         $nextLocationId = $connection->ubicacion1_id;
                     }
@@ -53,20 +60,25 @@ class RouteController extends Controller
             // Agregar la ubicación más cercana a la ruta
             $route[] = $nextLocationId;
 
-            // Eliminar la conexión que contiene la ubicación actual
-            $connections = $connections->filter(function ($connection) use ($currentLocationId) {
-                return $connection->ubicacion1_id !== $currentLocationId && $connection->ubicacion2_id !== $currentLocationId;
-            });
-
+            // Actualizar la ubicación actual
             $currentLocationId = $nextLocationId;
+
+            // Obtener las conexiones desde la ubicación actual
+            $currentLocation = Location::find($currentLocationId);
+            $connectionsFromCurrentLocation = $currentLocation->connectionsFrom;
+            $connectionsToCurrentLocation = $currentLocation->connectionsTo;
+
+            // Combina las conexiones desde y hacia la ubicación actual
+            $connectionsFromStartLocation = $connectionsFromStartLocation->concat($connectionsToCurrentLocation);
         }
 
         // Agregar la ubicación de inicio nuevamente para completar el ciclo
         $route[] = $startLocationId;
 
         // $route contiene la secuencia de ubicaciones en la ruta óptima
+        dd($route);
 
         return view('home', compact('route'));
     }
-}
 
+}

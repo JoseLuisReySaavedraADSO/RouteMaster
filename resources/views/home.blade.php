@@ -43,7 +43,8 @@
         @foreach ($locations as $location)
             <div style="position: absolute; left: {{ $location->posX * 5 }}px; top: {{ $location->posY * 5 }}px;"
                 class="location-point" data-location-id="{{ $location->id }}">
-                <img style="width: 30px" src="https://cdn-icons-png.flaticon.com/512/2776/2776067.png" alt="">
+                <span style="color: red">{{$location->id}}</span>
+                {{-- <img style="width: 30px" src="https://cdn-icons-png.flaticon.com/512/2776/2776067.png" alt="{{$location->id}}"> --}}
             </div>
         @endforeach
 
@@ -59,12 +60,12 @@
 
         </form>
 
-        <form id="calculate-route-form" action="{{ 'add' }}" method="POST">
+        <form id="calculate-route-form" action="{{ 'calculate' }}" method="POST">
             @csrf
             <input type="hidden" id="startLocation" name="startLocation" value="">
             {{-- <button class="formHome__button formHome__input" type="submit">Calcular ruta</button> --}}
 
-            <button class="formHome__button formHome__input calculate-route-button" type="submit">Calcular ruta</button>
+            <button class="formHome__button formH ome__input calculate-route-button" type="submit">Calcular ruta</button>
         </form>
 
         <h1>Ruta óptima</h1>

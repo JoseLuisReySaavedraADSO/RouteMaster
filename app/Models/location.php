@@ -14,4 +14,14 @@ class location extends Model
         'posX',
         'posY',
     ];
+
+    public function connectionsFrom()
+    {
+        return $this->hasMany(Connection::class, 'ubicacion1_id');
+    }
+
+    public function connectionsTo()
+    {
+        return $this->hasMany(Connection::class, 'ubicacion2_id');
+    }
 }

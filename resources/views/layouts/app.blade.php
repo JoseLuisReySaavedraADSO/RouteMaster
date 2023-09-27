@@ -18,8 +18,8 @@
 
     <!-- Style -->
     <link rel="stylesheet" href="{{ asset('css/mainStyle.css') }}">
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     {{-- @vite(['resources/js/app.js']) --}}

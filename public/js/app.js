@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    alert('estoy dentro')
     let selectedStartLocation = null;
 
     // Manejar clic en los elementos de ubicación

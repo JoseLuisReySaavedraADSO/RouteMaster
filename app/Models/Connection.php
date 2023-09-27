@@ -14,4 +14,14 @@ class Connection extends Model
         'ubicacion2_id',
         'peso',
     ];
+
+    public function location1()
+    {
+        return $this->belongsTo(Location::class, 'ubicacion1_id');
+    }
+
+    public function location2()
+    {
+        return $this->belongsTo(Location::class, 'ubicacion2_id');
+    }
 }
