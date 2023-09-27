@@ -7,7 +7,6 @@
     <main style="background-image: url('{{ asset('images/image2.png') }}');" class="main">
 
         @foreach ($locations as $location)
-        
             <div style="position: absolute; left: {{ $location->posX * 5 }}px; top: {{ $location->posY * 5 }}px;"
                 class="location-point" data-location-id="{{ $location->id }}">
 
@@ -15,7 +14,7 @@
                     <img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/2776/2776067.png" alt="">
                 </div>
 
-                <form class="popup" action="{{ route('update', $location->id) }}" method="POST">
+                <form action="{{ route('update', $location->id) }}" method="POST">
                     @csrf
                     <div id="myPopup_{{ $location->id }}" class="popup">
                         <a class="close-popup-button" onclick="closePopup('{{ $location->id }}')">&times;</a>
@@ -39,12 +38,12 @@
                             Actualizar
                         </button>
                         {{-- <button type="submit" class="">
-                        Eliminar
-                    </button> --}}
+                            Eliminar
+                        </button> --}}
 
                     </div>
                 </form>
-                
+
                 <a href="#" class="delete"
                     onclick="event.preventDefault(); document.getElementById('delete-form-{{ $location->id }}').submit();">a</a>
                 <form id="delete-form-{{ $location->id }}" action="{{ route('delete', $location->id) }}" method="POST"
@@ -66,13 +65,14 @@
                 <input class="formHome__input" type="number" name="posy" placeholder="Posición Y (MAX 125)" required
                     min="0" max="125">
                 <button class="formHome__button formHome__input" type="submit">Guardar</button>
-    
+
             </form>
-    
+
             <form id="calculate-route-form" action="{{ 'calculate' }}" method="POST">
                 @csrf
                 <input class="formHome__input" type="hidden" id="startLocation" name="startLocation" value="">
-                <button class="formHome__button formHome__input calculate-route-button" type="submit">Calcular ruta</button>
+                <button class="formHome__button formHome__input calculate-route-button" type="submit">Calcular
+                    ruta</button>
             </form>
 
         </div>
