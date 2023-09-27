@@ -5,7 +5,7 @@
 @section('content')
 
     <main style="background-image: url('{{ asset('images/image2.png') }}');" class="main">
-        <svg id="lines-container" style="position: absolute; width: 100%; height: 100%; z-index: -1;"></svg>
+
         @foreach ($locations as $location)
         
             <div style="position: absolute; left: {{ $location->posX * 5 }}px; top: {{ $location->posY * 5 }}px;"
@@ -39,11 +39,12 @@
                             Actualizar
                         </button>
                         {{-- <button type="submit" class="">
-                            Eliminar
-                        </button> --}}
+                        Eliminar
+                    </button> --}}
 
                     </div>
                 </form>
+                
                 <a href="#" class="delete"
                     onclick="event.preventDefault(); document.getElementById('delete-form-{{ $location->id }}').submit();">a</a>
                 <form id="delete-form-{{ $location->id }}" action="{{ route('delete', $location->id) }}" method="POST"
