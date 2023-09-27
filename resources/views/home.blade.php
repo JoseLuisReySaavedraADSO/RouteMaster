@@ -5,7 +5,7 @@
 @section('content')
 
     <main style="background-image: url('{{ asset('images/image2.png') }}');" class="main">
-
+        <svg id="lines-container" style="position: absolute; width: 100%; height: 100%; z-index: -1;"></svg>
         @foreach ($locations as $location)
             <div style="position: absolute; left: {{ $location->posX * 5 }}px; top: {{ $location->posY * 5 }}px;"
                 class="location-point" data-location-id="{{ $location->id }}">
@@ -25,12 +25,12 @@
                         </div>
                         <div>
                             <label for="coorx_{{ $location->id }}">X</label>
-                            <input id="coorx_{{ $location->id }}" name="coorx" type="text"
+                            <input id="coorx_{{ $location->id }}" name="posx" type="text"
                                 value="{{ $location->posX }}" required min="0" max="265">
                         </div>
                         <div>
                             <label for="coory_{{ $location->id }}">Y</label>
-                            <input id="coory_{{ $location->id }}" name="coory" type="text"
+                            <input id="coory_{{ $location->id }}" name="posy" type="text"
                                 value="{{ $location->posY }}" required min="0" max="125">
                         </div>
                         <button type="submit" class="">

@@ -32,8 +32,8 @@ class LocationController extends Controller
         // dd($location);
 
         $location->nombre = $data->input('nombre');
-        $location->posX = $data->input('coorx');
-        $location->posY = $data->input('coory');
+        $location->posX = $data->input('posx');
+        $location->posY = $data->input('posy');
 
         // Obtener la ubicación que deseas editar
 

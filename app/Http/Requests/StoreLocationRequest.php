@@ -24,8 +24,8 @@ class StoreLocationRequest extends FormRequest
         return [
             // dd('llegue'),
             'nombre' => 'required | max:100',
-            'coorx' => 'required | integer | between: 0, 265',
-            'coory' => 'required | integer | between: 0, 125',
+            'posx' => 'required | integer | between: 0, 265',
+            'posy' => 'required | integer | between: 0, 125',
         ];
     }
 }
