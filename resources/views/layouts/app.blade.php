@@ -18,11 +18,13 @@
 
     <!-- Style -->
     <link rel="stylesheet" href="{{ asset('css/mainStyle.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Scripts -->
-    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- @vite(['resources/js/app.js']) --}}
 </head>
-<body>
+<body style="overflow: hidden;">
     <div id="app">
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

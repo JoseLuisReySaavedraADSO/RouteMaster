@@ -8,6 +8,12 @@
     font-family: 'Jockey One', sans-serif;
 }
 
+.location-point.selected {
+    background-color: #ff0000; /* Cambia el color de fondo cuando se selecciona */
+    transform: scale(1.2); /* Aumenta el tamaño del punto cuando se selecciona */
+    transition: background-color 0.3s, transform 0.3s; /* Agrega una transición suave */
+}
+
 /*
 ***** VISTA WELCOME 
 */
