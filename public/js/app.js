@@ -29,12 +29,20 @@ $(document).ready(function () {
 });
 
 
-function openPopup() {
-    var popup = document.getElementById('myPopup');
+function openPopup(locationId) {
+    // Oculta todos los popups abiertos
+    var popups = document.querySelectorAll('.popup');
+    for (var i = 0; i < popups.length; i++) {
+        popups[i].style.display = 'none';
+    }
+
+    // Muestra el popup específico
+    var popup = document.getElementById('myPopup_' + locationId);
     popup.style.display = 'block';
 }
 
-function closePopup() {
-    var popup = document.getElementById('myPopup');
+function closePopup(locationId) {
+    // Oculta el popup específico
+    var popup = document.getElementById('myPopup_' + locationId);
     popup.style.display = 'none';
 }

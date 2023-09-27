@@ -24,4 +24,5 @@ class Connection extends Model
     {
         return $this->belongsTo(Location::class, 'ubicacion2_id');
     }
+    
 }

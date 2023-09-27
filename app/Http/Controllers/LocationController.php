@@ -23,6 +23,43 @@ class LocationController extends Controller
         // return view('home');
     }
 
+    public function update(StoreLocationRequest $data, $id)
+    {
+        // Validar los datos del formulario de edición
+
+        // dd($id);
+        $location = Location::find($id);
+        // dd($location);
+
+        $location->nombre = $data->input('nombre');
+        $location->posX = $data->input('coorx');
+        $location->posY = $data->input('coory');
+
+        // Obtener la ubicación que deseas editar
+
+        $this->connections();
+        $location->save();
+
+        // Redirigir a la página de inicio o a donde desees después de editar
+        return redirect()->route('home')->with('success', 'Ubicación actualizada exitosamente');
+    }
+
+    public function destroy($id)
+    {
+        // Buscar la ubicacion por su ID
+        $location = location::findOrFail($id);
+
+        Connection::where('ubicacion1_id', $location->id)->orWhere('ubicacion2_id', $location->id)->delete();
+        
+
+        // Eliminar la ubicacion
+        $location->delete();
+
+
+        return redirect()->route('home')->with('success', 'Mascota eliminada exitosamente');
+    }
+
+
     public function connections()
     {
         function calculateDistance($x1, $y1, $x2, $y2)
@@ -51,6 +88,4 @@ class LocationController extends Controller
             }
         }
     }
-
-    
 }

@@ -10,33 +10,45 @@
             <div style="position: absolute; left: {{ $location->posX * 5 }}px; top: {{ $location->posY * 5 }}px;"
                 class="location-point" data-location-id="{{ $location->id }}">
 
-                <div class="open-popup-button" onclick="openPopup()">
+                <div class="open-popup-button" onclick="openPopup('{{ $location->id }}')">
                     <img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/2776/2776067.png" alt="">
                 </div>
+                <form action="{{ route('update', $location->id) }}" method="POST">
+                    @csrf
+                    <div id="myPopup_{{ $location->id }}" class="popup">
+                        <a class="close-popup-button" onclick="closePopup('{{ $location->id }}')">&times;</a>
+                        <br>
+                        <div>
+                            <label for="nombre_{{ $location->id }}">Punto</label>
+                            <input id="nombre_{{ $location->id }}" name="nombre" type="text"
+                                value="{{ $location->nombre }}">
+                        </div>
+                        <div>
+                            <label for="coorx_{{ $location->id }}">X</label>
+                            <input id="coorx_{{ $location->id }}" name="coorx" type="text"
+                                value="{{ $location->posX }}" required min="0" max="265">
+                        </div>
+                        <div>
+                            <label for="coory_{{ $location->id }}">Y</label>
+                            <input id="coory_{{ $location->id }}" name="coory" type="text"
+                                value="{{ $location->posY }}" required min="0" max="125">
+                        </div>
+                        <button type="submit" class="">
+                            Actualizar
+                        </button>
+                        {{-- <button type="submit" class="">
+                            Eliminar
+                        </button> --}}
 
-                <div id="myPopup" class="popup">
-                    <a class="close-popup-button" onclick="closePopup()">&times;</a>
-                    <br>
-                    <div>
-                        <label for="nombre">Punto</label>
-                        <input id="nombre" name="nombre" type="text" placeholder="{{$location->nombre}}">
                     </div>
-                    <div>
-                        <label for="coorx">X</label>
-                        <input id="coorx" name="coorx" type="text" placeholder="{{$location->posX}} X (MAX 265)" required min="0" max="265">
-                    </div>
-                    <div>
-                        <label for="coory">Y</label>
-                        <input id="coory" name="coory" type="text" placeholder="{{$location->posY}} Y (MAX 125)" required min="0" max="125">
-                    </div>
-                    <button type="submit" class="">
-                        Actualizar
-                    </button>
-    
-                    <button type="submit" class="">
-                        Eliminar
-                    </button>
-                </div>
+                </form>
+                <a href="#" class="delete"
+                    onclick="event.preventDefault(); document.getElementById('delete-form-{{ $location->id }}').submit();">a</a>
+                <form id="delete-form-{{ $location->id }}" action="{{ route('delete', $location->id) }}" method="POST"
+                    style="display: none;">
+                    @csrf
+                    @method('DELETE')
+                </form>
 
             </div>
         @endforeach
@@ -44,8 +56,10 @@
         <form id="calculate-route-form" class="formHome" action="{{ route('add') }}" method="post">
             @csrf
             <input class="formHome__input" type="text" name="nombre" placeholder="Punto" required>
-            <input class="formHome__input" type="number" name="posx" placeholder="Posición X (MAX 265)" required min="0" max="265">
-            <input class="formHome__input" type="number" name="posy" placeholder="Posición Y (MAX 125)" required min="0" max="125">
+            <input class="formHome__input" type="number" name="posx" placeholder="Posición X (MAX 265)" required
+                min="0" max="265">
+            <input class="formHome__input" type="number" name="posy" placeholder="Posición Y (MAX 125)" required
+                min="0" max="125">
             <button class="formHome__button formHome__input" type="submit">Guardar</button>
 
         </form>
@@ -68,7 +82,7 @@
         @else
             <p>No se ha calculado una ruta óptima todavía.</p>
         @endif --}}
-        
+
         <div class="button__logout" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();

@@ -22,6 +22,7 @@ Route::get('/', function () {
 // RUTA PARA AGREGAR UBICACIÓN
 Route::post('/add', [App\Http\Controllers\LocationController::class, 'store'])->name('add');
 
+
 // RUTA PARA CALCULAR LA RUTA ENTRE NODOS
 Route::post('/calculate', [App\Http\Controllers\RouteController::class, 'calculate'])->name('calculate');
 
@@ -30,3 +31,5 @@ Auth::routes(['verify' => true]);
 
 // RUTA PARA VISTA INICIO CON MIDDLEWARE PARA VERIFICACIÓN DE CORREO
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::post('/update/{id}', [App\Http\Controllers\LocationController::class, 'update'])->name('update');
+Route::delete('/delete/{id}', [App\Http\Controllers\LocationController::class, 'destroy'])->name('delete');
