@@ -360,3 +360,26 @@
     color: #21213B;
     line-height: 1;
 }
+
+
+/* 
+
+    RUTA ÓPTIMA
+
+*/
+.endRoute{
+    color: #00001a;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 7px;
+    position: fixed;
+    bottom: 50px;
+    right: 0;
+}
+.endRoute h1{
+    font-size: 20px;
+}
+.endRoute li{
+    display: inline-block;
+    list-style: none;
+}

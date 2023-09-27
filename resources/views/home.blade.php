@@ -90,16 +90,20 @@
 
         </div>
 
-        {{-- <h1>Ruta óptima</h1>
-        @if (isset($route))
-            <ul>
-                @foreach ($route as $locationId)
-                    <li>{{ $locationId }}</li>
-                @endforeach
-            </ul>
-        @else
-            <p>No se ha calculado una ruta óptima todavía.</p>
-        @endif --}}
+        <div class="endRoute">
+
+            <h1>Ruta óptima</h1>
+            @if (isset($route))
+                <ul>
+                    @foreach ($route as $locationId)
+                        <li>{{ $locationId }},</li>
+                    @endforeach
+                </ul>
+            @else
+                <p>No se ha calculado una ruta óptima todavía.</p>
+            @endif
+
+        </div>
 
         <div class="button__logout" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('logout') }}"
