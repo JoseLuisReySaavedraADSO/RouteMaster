@@ -54,8 +54,12 @@
                         @endif --}}
                     </div>
 
-                    <p class="login__link">¿Aún no poseen una cuenta? 
+                    <p class="login__link">¿Aún no posee una cuenta? 
                         <a href="{{ route('register') }}">Registrate</a>
+                    </p>
+
+                    <p class="login__link">¿Olvidó su contraseña? 
+                        <a href="{{ route('password.request') }}">Recupérela</a>
                     </p>
 
                 </form>
