@@ -7,7 +7,7 @@
     <main style="background-image: url('{{ asset('images/image2.png') }}');" class="main">
 
         @foreach ($locations as $location)
-            <div style="position: absolute; left: {{ $location->posX * 5 }}px; top: {{ $location->posY * 5 }}px;"
+            <div style="position: absolute; left: {{ ($location->posX + $maxX) * 5 }}px; top: {{ ($maxY - $location->posY) * 5 }}px;"
                 class="location-point" data-location-id="{{ $location->id }}">
 
                 <div class="open-popup-button" onclick="openPopup('{{ $location->id }}')">
@@ -22,43 +22,43 @@
                         <div id="myPopup_{{ $location->id }}" class="popup">
                             <a class="close-popup-button" onclick="closePopup('{{ $location->id }}')">&times;</a>
                             <br>
-                            
+
                             <div class="popup__container">
                                 <div>
                                     <label for="nombre_{{ $location->id }}">Punto</label>
-                                    <input class="formHome__input formHome__input--mod" id="nombre_{{ $location->id }}" name="nombre" type="text"
-                                        value="{{ $location->nombre }}">
+                                    <input class="formHome__input formHome__input--mod" id="nombre_{{ $location->id }}"
+                                        name="nombre" type="text" value="{{ $location->nombre }}">
                                 </div>
                                 <div>
                                     <label for="coorx_{{ $location->id }}">X</label>
-                                    <input class="formHome__input formHome__input--mod" id="coorx_{{ $location->id }}" name="posx" type="text"
-                                        value="{{ $location->posX }}" required min="0" max="265">
+                                    <input class="formHome__input formHome__input--mod" id="coorx_{{ $location->id }}"
+                                        name="posx" type="text" value="{{ $location->posX }}" required min="0"
+                                        max="265">
                                 </div>
                                 <div>
                                     <label for="coory_{{ $location->id }}">Y</label>
-                                    <input class="formHome__input formHome__input--mod" id="coory_{{ $location->id }}" name="posy" type="text"
-                                        value="{{ $location->posY }}" required min="0" max="125">
+                                    <input class="formHome__input formHome__input--mod" id="coory_{{ $location->id }}"
+                                        name="posy" type="text" value="{{ $location->posY }}" required min="0"
+                                        max="125">
                                 </div>
-                                
-                                {{-- <button type="submit" class="">
-                                    Eliminar
-                                </button> --}}
+
                             </div>
                             <button type="submit" class="formHome__button formHome__button--mod formHome__input ">
                                 Actualizar
                             </button>
 
-                            <a href="#" class="delete button__delete" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $location->id }}').submit();">
+                            <a href="#" class="delete button__delete"
+                                onclick="event.preventDefault(); document.getElementById('delete-form-{{ $location->id }}').submit();">
                                 Eliminar
                             </a>
-    
+
                         </div>
                     </form>
-    
+
                     {{-- <a href="#" class="delete"
                         onclick="event.preventDefault(); document.getElementById('delete-form-{{ $location->id }}').submit();">Delete</a> --}}
-                    <form id="delete-form-{{ $location->id }}" action="{{ route('delete', $location->id) }}" method="POST"
-                        style="display: none;">
+                    <form id="delete-form-{{ $location->id }}" action="{{ route('delete', $location->id) }}"
+                        method="POST" style="display: none;">
                         @csrf
                         @method('DELETE')
                     </form>
@@ -74,9 +74,9 @@
                 @csrf
                 <input class="formHome__input" type="text" name="nombre" placeholder="Punto" required>
                 <input class="formHome__input" type="number" name="posx" placeholder="Posición X (MAX 265)" required
-                    min="0" max="265">
+                    min="" max="265">
                 <input class="formHome__input" type="number" name="posy" placeholder="Posición Y (MAX 125)" required
-                    min="0" max="125">
+                    min="" max="125">
                 <button class="formHome__button formHome__input" type="submit">Guardar</button>
 
             </form>
@@ -89,18 +89,34 @@
             </form>
 
         </div>
+        {{-- 
+        <form action="/agregar-json" method="POST">
+            <label for="jsonContent">Contenido JSON:</label>
+            <textarea id="jsonContent" name="jsonContent" rows="4" cols="50"></textarea>
+            <br>
+            <button type="submit">Agregar JSON</button>
+        </form> --}}
 
         <div class="endRoute">
 
             <h1>Ruta óptima</h1>
-            @if (isset($route))
+            {{-- {{dd($route);}} --}}
+            @if (isset($route) && count($route) > 0)
                 <ul>
-                    @foreach ($route as $locationId)
-                        <li>{{ $locationId }},</li>
+                    <?php $count = count($route); ?>
+                    @foreach ($route as $index => $locationId)
+                        @if ($index < $count)
+                            <li>{{ $locationId }}</li>
+                        @endif
                     @endforeach
                 </ul>
             @else
-                <p>No se ha calculado una ruta óptima todavía.</p>
+                @if(session('message'))
+                    <p>{{ session('message') }}</p>
+                @else
+                    <p>No se ha calculado una ruta óptima todavía.</p>
+                @endif
+                
             @endif
 
         </div>

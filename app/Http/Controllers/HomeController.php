@@ -24,7 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $locations = location::all();
-        return view('home', compact('locations'));
+
+        // Obtener ubicaciones y realizar ajustes
+        $locations = Location::all();
+
+        $maxX = max(abs($locations->max('posX')), abs($locations->min('posX')));
+        $maxY = max(abs($locations->max('posY')), abs($locations->min('posY')));
+
+        $route = session('route');
+        $exploredRoutes = session('exploredRoutes');
+
+        return view('home', compact('locations', 'maxX', 'maxY', 'route', 'exploredRoutes'));
+
     }
 }

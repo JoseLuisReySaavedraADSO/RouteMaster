@@ -46,7 +46,7 @@ class JsonController extends Controller
             }
 
             $locationController = new LocationController();
-            $locationController->connections();
+            // $locationController->connections();
             // Después de agregar los datos, redirige al usuario a la página de inicio
             return redirect('/home');
         } else {
@@ -92,7 +92,7 @@ class JsonController extends Controller
                 }
             }
             $locationController = new LocationController();
-            $locationController->connections();
+            // $locationController->connections();
             // Después de agregar los datos, redirige al usuario a la página de inicio
             return redirect('/home');
         } else {
@@ -138,7 +138,7 @@ class JsonController extends Controller
                 }
             }
             $locationController = new LocationController();
-            $locationController->connections();
+            // $locationController->connections();
             // Después de agregar los datos, redirige al usuario a la página de inicio
             return redirect('/home');
         } else {
@@ -146,4 +146,5 @@ class JsonController extends Controller
             return redirect('/home')->with('error', 'El archivo JSON no existe');
         }
     }
+
 }
