@@ -32,9 +32,9 @@ class HomeController extends Controller
         $maxY = max(abs($locations->max('posY')), abs($locations->min('posY')));
 
         $route = session('route');
-        $exploredRoutes = session('exploredRoutes');
+        $totalWeight = session('totalWeight');
 
-        return view('home', compact('locations', 'maxX', 'maxY', 'route', 'exploredRoutes'));
+        return view('home', compact('locations', 'maxX', 'maxY', 'route', 'totalWeight'));
 
     }
 }

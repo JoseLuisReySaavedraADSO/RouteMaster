@@ -46,3 +46,4 @@ function closePopup(locationId) {
     var popup = document.getElementById('myPopup_' + locationId);
     popup.style.display = 'none';
 }
+

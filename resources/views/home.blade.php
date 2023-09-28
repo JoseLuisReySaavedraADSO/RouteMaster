@@ -88,18 +88,39 @@
                     ruta</button>
             </form>
 
+            <button class="formHome__button formHome__input" id="openFormButton">Subir JSON</button>
+
+            <div id="uploadFormPopup">
+                <form method="POST" action="{{ route('upload-json') }}" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="jsonFile">
+                    <button type="submit">Subir JSON</button>
+                </form>
+                <button id="closeFormButton">X</button>
+            </div>
+
+            <script>
+                // Obtén una referencia al botón "Subir JSON" y al formulario popup
+                var openFormButton = document.getElementById("openFormButton");
+                var uploadFormPopup = document.getElementById("uploadFormPopup");
+                var closeFormButton = document.getElementById("closeFormButton");
+
+                // Agrega un manejador de eventos para abrir el popup cuando se hace clic en el botón
+                openFormButton.addEventListener("click", function() {
+                    uploadFormPopup.style.display = "block";
+                });
+
+                // Agrega un manejador de eventos para cerrar el popup cuando se hace clic en el botón "Cerrar"
+                closeFormButton.addEventListener("click", function() {
+                    uploadFormPopup.style.display = "none";
+                });
+            </script>
+
         </div>
-        {{-- 
-        <form action="/agregar-json" method="POST">
-            <label for="jsonContent">Contenido JSON:</label>
-            <textarea id="jsonContent" name="jsonContent" rows="4" cols="50"></textarea>
-            <br>
-            <button type="submit">Agregar JSON</button>
-        </form> --}}
 
         <div class="endRoute">
 
-            <h1>Ruta óptima</h1>
+            <h1>Ruta óptima:</h1>
             {{-- {{dd($route);}} --}}
             @if (isset($route) && count($route) > 0)
                 <ul>
@@ -111,14 +132,18 @@
                     @endforeach
                 </ul>
             @else
-                @if(session('message'))
+                @if (session('message'))
                     <p>{{ session('message') }}</p>
                 @else
                     <p>No se ha calculado una ruta óptima todavía.</p>
                 @endif
-                
+
             @endif
 
+            @if (isset($totalWeight))
+                <h1>Peso total:</h1>
+                <p>{{ $totalWeight }}</p>
+            @endif
         </div>
 
         <div class="button__logout" aria-labelledby="navbarDropdown">

@@ -16,6 +16,23 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 26, .4);
 }
 
+.connection-line {
+    position: absolute;
+    border: 1px solid #000; /* Estilo de línea, puedes personalizarlo */
+}
+
+#uploadFormPopup {
+    display: none;
+    position: fixed;
+    top: 0; /* Alineado con la parte superior de la pantalla */
+    left: 0; /* Alineado con la parte izquierda de la pantalla */
+    width: 300px; /* Ancho del formulario, ajusta según tus necesidades */
+    padding: 20px;
+    background-color: #00001a;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
 /*
 ***** VISTA WELCOME 
 */

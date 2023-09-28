@@ -39,3 +39,9 @@ Route::get('/prueba', [App\Http\Controllers\JsonController::class, 'prueba'])->n
 Route::get('/basico', [App\Http\Controllers\JsonController::class, 'basico'])->name('basico');
 Route::get('/medio', [App\Http\Controllers\JsonController::class, 'medio'])->name('medio');
 
+// Ruta para mostrar el formulario de carga de JSON
+Route::get('/upload-json-form', [App\Http\Controllers\JsonController::class, 'uploadJson'])->name('upload-json-form');
+
+// Ruta para procesar la carga de JSON
+Route::post('/upload-json', [App\Http\Controllers\JsonController::class, 'uploadJson'])->name('upload-json');
+
